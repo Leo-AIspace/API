@@ -11,7 +11,7 @@ import requests as req
 from io import StringIO
 
 
-# In[37]:
+# In[2]:
 
 
 def stock():
@@ -27,6 +27,13 @@ def stock():
     a = df[:].values.reshape(-1)
     
 #     return(Date,str(a[0]),str(a[1]),str(a[2]),str(a[3]),str(a[4]),str(a[5]))
-    return(str(Date),f'{a[0]}: {a[1]}',f'{a[2]}: {a[3]}',f'{a[4]}: {a[5]}',f'{a[6]}: {a[7]}',
-           f'{a[8]}: {a[9]}',f'{a[10]}: {a[11]}')
+#     return(str(Date),f'{a[0]}: {a[1]}',f'{a[2]}: {a[3]}',f'{a[4]}: {a[5]}',f'{a[6]}: {a[7]}',
+#            f'{a[8]}: {a[9]}',f'{a[10]}: {a[11]}')
+    return(Date)
+
+
+# In[ ]:
+
+
+
 
