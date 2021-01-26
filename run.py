@@ -4,26 +4,21 @@
 # In[ ]:
 
 
-# -*- coding: UTF-8 -*-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from app import stock
-
-
-# In[ ]:
-
+import function 
 
 app = Flask(__name__)
-@app.route('/',methods=['POST'])
+CORS(app)
+
+@app.route('/')
+def index():
+    return 'Hello !!'
+
+@app.route('/post',methods=['POST'])
 def Craw():
-    result = stock()
-    return(jsonify(result))
+    result = function.stock()
+    return jsonify({'result':str(result)})
+
 if __name__=='__main__':
-    app.run()
-
-
-# In[ ]:
-
-
-
-
+    app.run(host='0.0.0.0', port=3000, debug=False)
