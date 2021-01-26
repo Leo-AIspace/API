@@ -1,0 +1,6 @@
+flask
+flask_Cros
+gunicorn
+numpy
+pandas
+requests
