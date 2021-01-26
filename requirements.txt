@@ -4,4 +4,4 @@ gunicorn
 numpy
 pandas
 requests
-lxml
+line-bot-sdk
