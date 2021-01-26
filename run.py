@@ -3,7 +3,8 @@
 
 # In[ ]:
 
-from flask import Flask, request, abort
+from flask import Flask, request, abort, jsonify
+import function 
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -44,7 +45,11 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text='please wait.'))
+    result = function.stock()
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=result))
 
 
 if __name__ == "__main__":
