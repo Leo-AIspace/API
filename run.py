@@ -46,10 +46,7 @@ def handle_message(event):
     result = function.stock()
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=result))
-     line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='Done!'))
+        TextSendMessage(text=jsonify({'result':result})))
 
 if __name__ == "__main__":
     app.run()
