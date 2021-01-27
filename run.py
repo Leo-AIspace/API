@@ -4,10 +4,7 @@
 # In[ ]:
 
 from flask import Flask, request, abort, jsonify
-import numpy as np
-import pandas as pd
-import requests as req
-from io import StringIO
+import function
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -45,19 +42,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    html = req.get('https://www.twse.com.tw/fund/BFI82U?response=html&dayDate=&weekDate=&monthDate=&type=day')
-    html.encoding='utf-8'
-    table = pd.read_html(StringIO(html.text),header=0)
-    df = table[0]
-    df.drop(labels=df.columns[1:-1],axis=1,inplace=True)
-    df.drop(labels=0,axis=0,inplace=True)
-    df['110年01月26日 三大法人買賣金額統計表.3'] = df['110年01月26日 三大法人買賣金額統計表.3'].apply(
-    lambda x : '{:.2f}億'.format(int(x)/100000000))
-    Date = list(df.columns)[0]
-    a = df[:].values.reshape(-1)
+    result = function.stock()
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=str(Date))
+        TextSendMessage(text=result))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=3000,debug=False)

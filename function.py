@@ -21,16 +21,13 @@ def stock():
     df = table[0]
     df.drop(labels=df.columns[1:-1],axis=1,inplace=True)
     df.drop(labels=0,axis=0,inplace=True)
-    df['110年01月26日 三大法人買賣金額統計表.3'] = df['110年01月26日 三大法人買賣金額統計表.3'].apply(
+    df[df.columns[-1]] = df[df.columns[-1]].apply(
     lambda x : '{:.2f}億'.format(int(x)/100000000))
     Date = list(df.columns)[0]
-    a = df[:].values.reshape(-1)
-    
-#     return(Date,str(a[0]),str(a[1]),str(a[2]),str(a[3]),str(a[4]),str(a[5]))
-#     return(str(Date),f'{a[0]}: {a[1]}',f'{a[2]}: {a[3]}',f'{a[4]}: {a[5]}',f'{a[6]}: {a[7]}',
-#            f'{a[8]}: {a[9]}',f'{a[10]}: {a[11]}')
-    return(Date)
-
+    a = df[:].values
+    content = ""
+    content += f"{Date}\n{str(a[0])}\n{str(a[1])}\n{str(a[2])}\n{str(a[3])}\n{str(a[4])}\n{str(a[5])}"
+    return content
 
 # In[ ]:
 
